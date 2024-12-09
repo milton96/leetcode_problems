@@ -1,9 +1,10 @@
 def getSum(a: int, b: int) -> int:
-    while b != 0:
-        aux = a&b
+    mask = 0xffffffff
+    while b & mask != 0:
+        aux = (a&b)<<1
         a = a ^ b
-        b = aux<<1 
-    return a
+        b = aux
+    return a & mask if  b > 0 else a
 
 
 if __name__ == "__main__":
