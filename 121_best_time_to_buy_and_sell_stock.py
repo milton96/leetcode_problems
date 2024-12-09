@@ -1,20 +1,16 @@
 
 def maxProfit(prices: list[int]) -> int:
-    min_value = prices[0]
-    for i in range(1, len(prices)):
-        if prices[i] <= min_value:
-            min_value = prices[i]
-        else:
-            m = min(prices[i+1:])
-            if m <= min_value:
-                min_value = m
-            break
-    index = prices.index(min_value)
-    prices_sliced = prices[index+1:]
-    if len(prices_sliced) == 0:
-        return 0
-    max_value = max(prices[index+1:])
-    return max_value - min_value
+    min_value = float('inf')
+    max_value = 0
+
+    for p in prices:
+        if p < min_value:
+            min_value = p
+        profit = p - min_value
+        if profit > max_value:
+            max_value = profit
+
+    return max_value
 
 
 if __name__ == "__main__":
