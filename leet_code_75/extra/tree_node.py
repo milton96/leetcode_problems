@@ -32,3 +32,15 @@ def height(root: TreeNode) -> int:
             return lheight + 1
         else:
             return rheight + 1
+        
+def search(root: TreeNode, val: int) -> TreeNode | None:
+    if not root:
+        return None
+    
+    if root.val == val:
+        return root
+    
+    if root.val > val:
+        return search(root.left, val)
+    
+    return search(root.right, val)
